@@ -6,6 +6,7 @@ import { PaymentService } from '../payment/payment.service';
 import { BookingService } from '../booking/booking.service';
 import { JwtAuthGuard } from '../auth/guards';
 import { PaymentStatus } from 'src/common/enums';
+import { NotificationService } from '../notification/notification.service';
 
 @UseGuards(JwtAuthGuard)
 @Controller('qr')
@@ -14,6 +15,7 @@ export class QrController {
     private qrService: QrService,
     private paymentService: PaymentService,
     private bookingService: BookingService,
+    private notificationService: NotificationService,
   ) {}
 
   @Post('create-qr')
@@ -41,6 +43,12 @@ export class QrController {
       booking.id,
       String(PaymentStatus.PAID),
     );
+
+    // Sending the success notification here to consumer
+    await this.notificationService.sendEmail({
+      bookingId: booking.id,
+      consumerId: booking.consumerId,
+    });
     return payment;
   }
 }
