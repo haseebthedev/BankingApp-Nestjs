@@ -1,7 +1,7 @@
-import { Qrs } from 'src/modules/qr/entities/qr.entity';
-import { Review } from 'src/modules/review/entities/review.entity';
-import { Consumer } from 'src/modules/user/entities/consumer.entity';
-import { Merchant } from 'src/modules/user/entities/merchant.entity';
+import { Qrs } from '../../qr/entities/qr.entity';
+import { Review } from '../../review/entities/review.entity';
+import { Consumer } from '../../user/entities/consumer.entity';
+import { Merchant } from '../../user/entities/merchant.entity';
 import {
   Column,
   Entity,

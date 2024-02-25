@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PaymentMethod } from './paymentMethod.entity';
-import { Booking } from 'src/modules/booking/entities/booking.entity';
+import { Booking } from '../../booking/entities/booking.entity';
 
 @Entity('payments')
 export class Payment {

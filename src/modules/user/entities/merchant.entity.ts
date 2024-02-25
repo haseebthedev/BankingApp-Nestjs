@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { User } from './user.entity';
-import { Booking } from 'src/modules/booking/entities/booking.entity';
+import { Booking } from '../../booking/entities/booking.entity';
 
 @Entity('merchants')
 export class Merchant {

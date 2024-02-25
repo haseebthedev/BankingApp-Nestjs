@@ -5,12 +5,11 @@ import {
   BeforeInsert,
   BeforeUpdate,
   OneToOne,
-  JoinColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Merchant } from './merchant.entity';
 import { Consumer } from './consumer.entity';
-import { Review } from 'src/modules/review/entities/review.entity';
+import { Review } from '../../review/entities/review.entity';
 
 @Entity('users')
 export class User {

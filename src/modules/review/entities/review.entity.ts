@@ -1,5 +1,5 @@
-import { Booking } from 'src/modules/booking/entities/booking.entity';
-import { User } from 'src/modules/user/entities/user.entity';
+import { Booking } from '../../booking/entities/booking.entity';
+import { User } from '../../user/entities/user.entity';
 import {
   Column,
   Entity,
