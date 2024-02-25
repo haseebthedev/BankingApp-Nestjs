@@ -10,10 +10,14 @@ import { ChangePassDTO, UpdateProfileDTO } from './dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Consumer } from './entities/consumer.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
+  constructor(
+    @InjectRepository(User) private userRepo: Repository<User>,
+    @InjectRepository(Consumer) private consumerRepo: Repository<Consumer>,
+  ) {}
 
   async create(dto: SignUpDTO): Promise<User> {
     const userInDB = await this.userRepo.findOne({
@@ -44,6 +48,19 @@ export class UserService {
 
     if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
     return user;
+  }
+
+  async findUserByConsumerId(consumerId: string): Promise<User | null> {
+    const user = await this.consumerRepo
+      .createQueryBuilder('consumers')
+      .leftJoinAndSelect('consumers.user', 'users')
+      .where('consumers.userId = users.id')
+      .andWhere('consumers.userId  = :consumerId', { consumerId })
+      .getOne();
+
+    if (!user)
+      throw new NotFoundException(`User with ID ${consumerId} not found`);
+    return user.user;
   }
 
   async findByIdandUpdate(

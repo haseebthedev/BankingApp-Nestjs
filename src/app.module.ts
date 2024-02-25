@@ -11,6 +11,7 @@ import { BookingModule } from './modules/booking/booking.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { QRModule } from './modules/qr/qr.module';
 import { ReviewModule } from './modules/review/review.module';
+import { NotificationModule } from './modules/notification/notification.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ReviewModule } from './modules/review/review.module';
     PaymentModule,
     QRModule,
     ReviewModule,
+    NotificationModule,
   ],
   controllers: [],
   providers: [

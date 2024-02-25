@@ -3,16 +3,10 @@ import { Qrs } from './entities/qr.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateQRCodeDTO } from './dto';
-import { Payment } from '../payment/entities/payment.entity';
-import { Booking } from '../booking/entities/booking.entity';
 
 @Injectable()
 export class QrService {
-  constructor(
-    @InjectRepository(Qrs) private qrRepo: Repository<Qrs>,
-    @InjectRepository(Payment) private paymentRepo: Repository<Payment>,
-    @InjectRepository(Booking) private bookingRepo: Repository<Booking>,
-  ) {}
+  constructor(@InjectRepository(Qrs) private qrRepo: Repository<Qrs>) {}
 
   async createQRCode(userId: string, data: CreateQRCodeDTO) {
     const qr = this.qrRepo.create({ merchantId: userId, ...data });

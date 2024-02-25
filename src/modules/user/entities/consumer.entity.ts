@@ -7,7 +7,7 @@ export class Consumer {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @OneToOne(() => User, (user) => user.merchant)
+  @OneToOne(() => User, (user) => user.consumer)
   @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user: User;
 
